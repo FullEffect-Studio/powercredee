@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "gpsdevice-386c9",
+    "gpsdev": "gpsdevice-386c9-gpsdev"
+  }
+}

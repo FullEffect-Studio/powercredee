@@ -1,0 +1,27 @@
+<div>
+ <div class="bg-primary py-3 px-4 text-primary-content  flex justify-between">
+   <div  class="text-xl">Current Bus</div>
+   <div class="flex space-x-2 text-sm" *ngIf="currentBusPosition$|async as pos">
+<!--     <div>Driver: {{pos.driverName}} </div>-->
+     <div> {{pos.lat}}, {{pos.lng}}</div>
+   </div>
+ </div>
+
+
+  <div>
+    <google-map height="86vh"
+                width="100%"
+                [zoom]="zoom"
+                [center]="center"
+                [options]="options">
+      <map-marker [position]="markerPosition"
+                  (positionChanged)="onBusPositionChanged()"
+                  [label]="'Bus Location'"
+                  [title]="'James Zebedee'"
+                  [options]="markerOption"
+      >
+      </map-marker>
+      <map-info-window>{{infoContent}}</map-info-window>
+    </google-map>
+  </div>
+</div>

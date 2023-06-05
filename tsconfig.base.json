@@ -1,0 +1,49 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@bb/admin/analytics": ["libs/admin/analytics/src/index.ts"],
+      "@bb/admin/buses": ["libs/admin/buses/src/index.ts"],
+      "@bb/admin/common": ["libs/admin/common/src/index.ts"],
+      "@bb/admin/core": ["libs/admin/core/src/index.ts"],
+      "@bb/admin/dashboard": ["libs/admin/dashboard/src/index.ts"],
+      "@bb/admin/devices": ["libs/admin/devices/src/index.ts"],
+      "@bb/admin/drivers": ["libs/admin/drivers/src/index.ts"],
+      "@bb/admin/fleets": ["libs/admin/fleets/src/index.ts"],
+      "@bb/admin/incidents": ["libs/admin/incidents/src/index.ts"],
+      "@bb/admin/notifications": ["libs/admin/notifications/src/index.ts"],
+      "@bb/admin/reports": ["libs/admin/reports/src/index.ts"],
+      "@bb/admin/routes": ["libs/admin/routes/src/index.ts"],
+      "@bb/admin/settings": ["libs/admin/settings/src/index.ts"],
+      "@bb/admin/students": ["libs/admin/students/src/index.ts"],
+      "@bb/backend/administration": [
+        "libs/backend/administration/src/index.ts"
+      ],
+      "@bb/backend/billing": ["libs/backend/billing/src/index.ts"],
+      "@bb/backend/common": ["libs/backend/common/src/index.ts"],
+      "@bb/backend/core": ["libs/backend/core/src/index.ts"],
+      "@bb/backend/notifications": ["libs/backend/notifications/src/index.ts"],
+      "@bb/backend/safety": ["libs/backend/safety/src/index.ts"],
+      "@bb/backend/students": ["libs/backend/students/src/index.ts"],
+      "@bb/backend/transportation": [
+        "libs/backend/transportation/src/index.ts"
+      ],
+      "@bb/shared/dtos": ["libs/shared/dtos/src/index.ts"],
+      "@bb/web/core": ["libs/web/core/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

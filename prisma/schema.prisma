@@ -1,0 +1,71 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  Administrator
+  Staff
+  Driver
+  Parent
+}
+
+model School {
+  id       String @id @default(uuid()) @map("_id") @db.String
+  name     String @unique
+  location String
+  User     User[]
+}
+
+model User {
+  id        String   @id @default(uuid()) @map("_id") @db.String
+  schoolId  String   @db.String
+  firstName String
+  lastName  String
+  role      UserRole
+  school    School   @relation(fields: [schoolId], references: [id])
+}
+
+model Student {
+  id                String   @id @default(uuid()) @map("_id") @db.String
+  studentId         String   @unique
+  firstName         String
+  lastName          String
+  class             String
+  stopId            String
+  parentName        String
+  parentPhoneNumber String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Driver {
+  id            String   @id @default(uuid()) @map("_id") @db.String
+  schoolId      String
+  name          String
+  phoneNumber   String   @unique
+  address       String
+  idCardNumber  String?
+  licenseType   String?
+  licenseNumber String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Stop {
+  id             String @id @default(uuid()) @map("_id") @db.String
+  schoolId       String
+  customName     String
+  placeGeoId     String
+  placeGeoName   String
+  lat            Float
+  lng            Float
+  geofenceRadius Float
+}

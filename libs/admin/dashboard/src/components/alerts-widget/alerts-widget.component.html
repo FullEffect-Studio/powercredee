@@ -1,0 +1,56 @@
+<div>
+  <h4 nz-typography>Alerts</h4>
+  <!--  TODO: Include a quick search-->
+  <table *ngIf="false else noDriversTpl" class="table table-auto w-full">
+    <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Bus No</th>
+      <th>Pick Up</th>
+      <th>Drop Off</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>GS-1660</td>
+      <td>
+        <nz-tag nzChecked>In Use</nz-tag>
+      </td>
+    </tr>
+    <tr>
+      <td>GE-5887</td>
+      <td>
+        <nz-tag nzColor="warning">Maintenance</nz-tag>
+      </td>
+    </tr>
+    <tr>
+      <td>GT-1555</td>
+      <td>
+        <nz-tag nzColor="success">Available</nz-tag>
+      </td>
+    </tr>
+    <tr>
+      <td>GT-7744</td>
+      <td>
+        <nz-tag nzColor="red">Out of Service</nz-tag>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noDriversTpl>
+    <div class="card bg-white rounded-xl">
+      <div>
+        <section class="max-w-2xl px-4 py-8 lg:py-12 mx-auto">
+          <img alt="Buses" class="mx-auto sm:w-2/5" src="assets/alerts.png" />
+          <h2 class="mt-8 text-xl font-medium text-center text-gray-800">No new notifications yet
+          </h2>
+          <p class="mt-4 text-center text-gray-600">
+            High priority alerts and notifications will be shown here
+          </p>
+        </section>
+      </div>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,16 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "docs: release v${version}",
+    "addUntrackedFiles": true,
+    "tag": true,
+    "push": true
+  },
+  "github": {
+    "release": true,
+    "tokenRef": "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"
+  },
+  "npm": {
+    "publish": false
+  }
+}

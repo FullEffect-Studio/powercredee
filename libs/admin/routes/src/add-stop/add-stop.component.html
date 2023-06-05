@@ -1,0 +1,81 @@
+<nz-drawer
+  (nzOnClose)="onClose()"
+  [nzClosable]="true"
+  [nzFooter]="footer"
+  [nzTitle]="drawerTitleTpl"
+  [nzVisible]="visible"
+  [nzWidth]="500"
+>
+  <ng-template #drawerTitleTpl>
+    <span class="fe fe-plus font-semibold"></span> New Bus Stop
+  </ng-template>
+
+  <ng-template #footer>
+    <div class="flex justify-end space-x-4 mr-6">
+      <button nz-button nzDanger nzSize="large" nzType="default">
+        Cancel
+      </button>
+      <button
+        (click)="add()"
+        [disabled]="form.invalid"
+        class="btn btn-primary btn-outline"
+        nz-button
+        nzSize="large"
+        nzType="primary">
+        <span></span>
+        Add
+      </button>
+    </div>
+  </ng-template>
+  <form *nzDrawerContent [formGroup]="form" nz-form nzLayout="vertical">
+    <div class="grid grid-cols-2 gap-4">
+      <nz-form-item>
+        <nz-form-label class="label" nzRequired>Geolocation</nz-form-label>
+        <nz-form-control>
+          <input  ngx-google-places-autocomplete [options]='placeOptions' #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)"
+                 class="focus:border-gray-500 focus:bg-white focus:ring-0"
+                 formControlName="placeName"
+                 nz-input type="search" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item *ngIf="selectedGeolocation">
+        <nz-form-label>Custom Display Name</nz-form-label>
+        <nz-form-control>
+          <input formControlName="customName" nz-input placeholder="Custom name" type="text" />
+        </nz-form-control>
+      </nz-form-item>
+
+
+
+      <nz-form-item *ngIf="selectedGeolocation" class="col-span-2">
+        <nz-form-label nzRequired>Geofence radius</nz-form-label>
+        <nz-form-control>
+          <nz-slider [nzMax]="50" [nzMin]="5" [nzStep]="5" [nzTooltipVisible]="'always'"
+                     formControlName="radius"></nz-slider>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+
+    <div *ngIf='form.get("placeName").value'>
+      <google-map width="450px" [zoom]="zoom"
+                  [center]="center"
+                  [options]="options">
+        <map-circle *ngFor="let c of circles" [center]="center"
+                    [radius]="radius.value"
+                    [options]="circleOptions"></map-circle>
+
+        <map-marker *ngFor="let marker of markers"
+                    [position]="marker.position"
+                    [label]="marker.label"
+                    [title]="marker.title"
+                    [options]="marker.options"
+        >
+        </map-marker>
+      </google-map>
+
+    </div>
+
+
+  </form>
+</nz-drawer>

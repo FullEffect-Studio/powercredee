@@ -1,0 +1,32 @@
+<div  class="py-4 px-4  rounded-lg shadow-lg">
+  <div class="container mx-auto bg-white ">
+    <nz-page-header [nzTitle]="titleTpl" class="site-page-header">
+      <ng-template #titleTpl>
+                <div class="text-xl font-bold text-primary-focus">James Zebedee</div>
+      </ng-template>
+
+      <nz-page-header-extra>
+        <div class="flex items-center space-x-2">
+          <button class="btn btn-md btn-primary"><span class="fe fe-plus"></span> Add new Driver</button>
+        </div>
+      </nz-page-header-extra>
+
+    </nz-page-header>
+
+    <div class="px-6">
+      <nz-descriptions nzBordered nzLayout="horizontal" nzSize="middle">
+        <nz-descriptions-item [nzSpan]="2" nzTitle="Name">Zhou Maomao</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Telephone">18100000000</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="License">Hangzhou, Zhejiang</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Status">Empty</nz-descriptions-item>
+        <nz-descriptions-item nzTitle="Address">
+          No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+        </nz-descriptions-item>
+      </nz-descriptions>
+    </div>
+
+
+  </div>
+
+
+</div>

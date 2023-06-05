@@ -1,0 +1,43 @@
+<nz-modal
+  (nzOnCancel)='onHide()'
+  (nzOnOk)='update()'
+  [nzClosable]='true'
+  [nzCloseIcon]='closeIconTpl'
+  [nzOkDisabled]='form.invalid'
+  [nzVisible]='show'
+  nzOkText='Save Changes'
+>
+  <ng-template #closeIconTpl>
+    <div class='mt-4'>
+      <span class='fa fa-close'></span>
+    </div>
+  </ng-template>
+  <div *nzModalTitle><span class='fe fe-plus'></span> Edit Driver Information</div>
+  <div *nzModalContent>
+    <bb-messages></bb-messages>
+    <form [formGroup]='form' class='grid grid-cols-2 gap-4' nz-form nzLayout='vertical'>
+      <nz-form-item>
+        <nz-form-label>Driver Name</nz-form-label>
+        <nz-form-control>
+          <input formControlName='name' nz-input type='text' />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Phone Number</nz-form-label>
+        <nz-form-control nzExtra='Must be 10 digit phone number'>
+          <input [decimal]='true' [maxLength]='10'
+                 [minLength]='10' digitOnly formControlName='phoneNumber' nz-input pattern='[0-9]*'
+                 type='text' />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item class='col-span-2'>
+        <nz-form-label>Address</nz-form-label>
+        <nz-form-control>
+          <textarea formControlName='address' nz-input></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</nz-modal>

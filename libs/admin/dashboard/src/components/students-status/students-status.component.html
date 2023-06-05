@@ -1,0 +1,56 @@
+<div class="bg-white px-4 py-4">
+  <h4 nz-typography>Browse Student Check-Ins <nz-tag nzColor="geekblue">Today</nz-tag></h4>
+<!--  TODO: Include a quick search-->
+  <table *ngIf="false else noDriversTpl" class="table table-auto w-full">
+    <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Bus No</th>
+      <th>Pick Up</th>
+      <th>Drop Off</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>GS-1660</td>
+      <td>
+        <nz-tag nzChecked>In Use</nz-tag>
+      </td>
+    </tr>
+    <tr>
+      <td>GE-5887</td>
+      <td>
+        <nz-tag nzColor="warning">Maintenance</nz-tag>
+      </td>
+    </tr>
+    <tr>
+      <td>GT-1555</td>
+      <td>
+        <nz-tag nzColor="success">Available</nz-tag>
+      </td>
+    </tr>
+    <tr>
+      <td>GT-7744</td>
+      <td>
+        <nz-tag nzColor="red">Out of Service</nz-tag>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noDriversTpl>
+    <div class="card bg-white rounded-xl">
+      <div>
+        <section class="max-w-2xl px-4 py-8 lg:py-12 mx-auto">
+          <img alt="Buses" class="mx-auto sm:w-1/5" src="assets/images/students.png" />
+          <h2 class="mt-8 text-xl font-medium text-center text-gray-800">No student check-in has been recorded today
+          </h2>
+          <p *ngIf="false" class="mt-4 text-center text-gray-600">
+            Displays the status of all the students in the system, such as whether they have been picked up or dropped off, and at which location.
+          </p>
+        </section>
+      </div>
+    </div>
+  </ng-template>
+</div>
