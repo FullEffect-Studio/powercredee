@@ -1,67 +1,42 @@
 <div class="space-y-6">
   <div class="grid grid-cols-4 gap-4">
     <div class="col-span-4">
-      <div class="w-full stats bg-white shadow">
-        <kmmi-stat
-          title="Average On-Time Pickups"
+      <div class="w-full grid grid-cols-4 gap-4 justify-center items-stretch">
+        <bb-stat
+          title="Total Customers"
           [value]="0"
-          desc="Daily average performance"
-        ></kmmi-stat>
-        <kmmi-stat
-          title="Fuel Consumption"
+          desc="View Customers Directory"
+        ></bb-stat>
+        <bb-stat
+          title="Deposit Request"
           [value]="0"
-          desc="Monthly average (liters)"
-        ></kmmi-stat>
+        ></bb-stat>
 
-        <kmmi-stat
-          title="Students Transported"
+        <bb-stat
+          title="Withdraw Request"
           [value]="0"
-          desc="Today"
-        ></kmmi-stat>
-        <kmmi-stat
-          title="Average Speed"
-          [value]="'0 km/h'"
-          desc="Covered Today"
-        ></kmmi-stat>
-        <kmmi-stat
-          title="Average Distance "
-          [value]="'0 km'"
-          desc="Travelled Today"
-        ></kmmi-stat>
-
+        ></bb-stat>
+        <bb-stat
+          title="Pending Loans"
+          [value]="0"
+        ></bb-stat>
       </div>
     </div>
   </div>
 
   <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-12 bg-white rounded-xl shadow p-4">
-      <bb-on-time-performace></bb-on-time-performace>
+    <div class="col-span-4 rounded-xl p-4">
+      <bb-expenses-overview></bb-expenses-overview>
     </div>
-    <div class="col-span-6 bg-white rounded-xl shadow p-4">
-      <bb-fuel-consumption></bb-fuel-consumption>
+    <div class="col-span-8 rounded-xl  p-4">
+      <bb-deposit-withdrawal-analytics></bb-deposit-withdrawal-analytics>
     </div>
-    <div class="col-span-6 bg-white rounded-xl shadow p-4">
-      <bb-maintenance-cost></bb-maintenance-cost>
-    </div>
-  </div>
 
-  <div class="grid grid-cols-12 gap-4">
-    <div class="col-span-8 bg-white rounded-xl shadow p-4">
-      <bb-students-status></bb-students-status>
+    <div class="col-span-12 rounded-xl  p-4">
+      <bb-students-status-by-bus></bb-students-status-by-bus>
     </div>
-    <div class="col-span-4 bg-white rounded-xl shadow p-4">
-      <bb-alerts-widget></bb-alerts-widget>
-    </div>
-  </div>
 
-  <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-2 bg-white rounded-xl shadow p-4">
-            <bb-bus-status></bb-bus-status>
-        </div>
-        <div class="col-span-2 bg-white rounded-xl shadow p-4">
-          <bb-driver-status></bb-driver-status>
-        </div>
-  </div>
 
+  </div>
 
 </div>

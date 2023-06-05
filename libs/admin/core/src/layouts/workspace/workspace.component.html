@@ -1,37 +1,37 @@
 <div class="flex h-screen ">
-  <aside  [@toggleDiv]="divState" class="bg-blackx bg-gradient-to-bl from-primary via-primary-focus to-neutral-900 text-gray-100 transition-all overflow-y-hidden w-64x hidden lg:block flex-shrink-0">
+  <aside  [@toggleDiv]="divState" class="bg-base-200 bg-gradient-to-blx from-primary via-primary-focus to-neutral-900 transition-all overflow-y-hidden w-64x hidden lg:block flex-shrink-0">
     <div routerLink="/" routerLinkActive="font-bold" class="flex items-center cursor-pointer justify-start space-x-2 pl-6 pt-3">
       <div *ngIf="divState === 'show'" class="pt-1">
         <img  src="assets/logo.png" alt="Brand logo" class="w-10">
       </div>
       <div *ngIf="divState === 'hide'" class="pt-1">
-        <img  src="assets/logo_short.png" alt="Brand logo" class="w-8">
+        <img  src="assets/logo.png" alt="Brand logo" class="w-10">
       </div>
       <div *ngIf="divState === 'show'" >
-        <div class="text-lg text-accent">BrainBirds Academy</div>
-        <div class="capitalize text-xs -mt-1 font-semibold">School Transport System</div>
+        <div class="text-lg text-gray-800">PowerCredee</div>
+        <div class="capitalize  text-xs -mt-1 font-semibold">Savings & Loans Solutions</div>
       </div>
     </div>
 
     <nav class="mt-8">
-      <ul class="divide-y divide-gray-600 divide-dashed text-sm text-gray-300">
+      <ul class="divide-y divide-gray-600 divide-dashed text-sm ">
         <li *ngFor="let menu of menus" class="px-6 py-2">
 
-          <a *ngIf="!menu.subMenus.length" [routerLink]="menu.path" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="font-bold text-accent" class="flex items-center hover:text-accent">
+          <a *ngIf="!menu.subMenus.length" [routerLink]="menu.path" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="font-bold text-theme-blue-100" class="flex items-center hover:text-theme-blue-100 text-theme-blue-200 ">
             <span [ngClass]="menu.feIcon" class="fe fa text-lg"></span>
             <span *ngIf="divState === 'show'" class="ml-4">{{menu.label}}</span>
           </a>
 
-          <a *ngIf="menu.subMenus.length"  class="flex  items-center text-gray-200 hover:text-accent" (click)="menu.isOpen = !menu.isOpen">
+          <a *ngIf="menu.subMenus.length"  class="flex  items-center text-theme-blue-100 hover:text-theme-blue-100 " (click)="menu.isOpen = !menu.isOpen">
             <span [ngClass]="menu.feIcon" class="fe fa text-lg"></span>
             <span *ngIf="divState === 'show'" class="ml-4 ">{{menu.label}}</span>
             <span [ngClass]="{'transform rotate-180': menu.isOpen}" class="fe fe-chevron-down transition-all text-xs ml-auto w-4 h-4"></span>
           </a>
 
           <ng-container *ngIf="menu.subMenus.length">
-            <ul  [ngClass]="{'ml-8': divState === 'show', 'ml-0': divState === 'hide'}" class="text-gray-400" *ngIf="menu.isOpen" [@slideDownUp]="menu.isOpen ? 'visible' : 'hidden'">
+            <ul  [ngClass]="{'ml-8': divState === 'show', 'ml-0': divState === 'hide'}" class="text-gray-400x" *ngIf="menu.isOpen" [@slideDownUp]="menu.isOpen ? 'visible' : 'hidden'">
               <li *ngFor="let submenu of menu.subMenus" class="py-2">
-                <a [routerLink]="submenu.path" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="font-bold text-accent" class="flex items-center text-gray-400x hover:text-accent">
+                <a [routerLink]="submenu.path" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="font-bold text-theme-blue-100 " class="flex items-center text-theme-blue-200 hover:text-theme-blue-100">
                   <span [ngClass]="submenu.feIcon" class="text-lg fa fe"></span>
                   <span *ngIf="divState === 'show'" class="ml-4">{{submenu.label}}</span>
                 </a>

@@ -16,9 +16,10 @@ import {BusStatusComponent} from "../components/bus-status/bus-status.component"
 import {DriverStatusComponent} from "../components/driver-status/driver-status.component";
 import {StudentsStatusComponent} from "../components/students-status/students-status.component";
 import {AlertsWidgetComponent} from "../components/alerts-widget/alerts-widget.component";
-import {OnTimePerformaceComponent} from "../components/on-time-performace/on-time-performace.component";
+import {DepositWithdrawalAnalyticsComponent} from "../components/on-time-performace/deposit-withdrawal-analytics.component";
 import {FuelConsumptionComponent} from "../components/fuel-consumption/fuel-consumption.component";
-import {BusMaintenanceCostComponent} from "../components/bus-maintenance-cost/bus-maintenance-cost.component";
+import {ExpensesOverviewComponent} from "../components/bus-maintenance-cost/expenses-overview.component";
+import {StudentsStatusByBusComponent} from "../components/students-status-by-bus/students-status-by-bus.component";
 
 
 
@@ -38,9 +39,10 @@ import {BusMaintenanceCostComponent} from "../components/bus-maintenance-cost/bu
     DriverStatusComponent,
     StudentsStatusComponent,
     AlertsWidgetComponent,
-    OnTimePerformaceComponent,
+    DepositWithdrawalAnalyticsComponent,
     FuelConsumptionComponent,
-    BusMaintenanceCostComponent,
+    ExpensesOverviewComponent,
+    StudentsStatusByBusComponent,
   ],
   templateUrl: './insights.component.html',
   styleUrls: ['./insights.component.scss'],

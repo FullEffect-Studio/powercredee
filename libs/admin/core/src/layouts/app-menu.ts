@@ -10,31 +10,9 @@ export const appMenu: AppMenu[]  = [
   {
     feIcon: 'fe-home',
     isOpen: false,
-    path: '',
     label: 'Dashboard',
-    subMenus:[
-      {
-        feIcon: 'fe-activity',
-        isOpen: false,
-        path: '/dashboard/insights',
-        label: 'Insights',
-        subMenus: []
-      },
-      {
-        feIcon: 'fe-monitor',
-        isOpen: false,
-        path: '/dashboard/monitor',
-        label: 'Monitor',
-        subMenus: []
-      },
-      {
-        feIcon: 'fe-alert-octagon',
-        isOpen: false,
-        path: '/dashboard/safety',
-        label: 'Driver Safety',
-        subMenus: []
-      },
-    ]
+    path: '/dashboard/insights',
+    subMenus:[]
   },
   {
     feIcon: 'fe-users',
