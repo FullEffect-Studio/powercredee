@@ -35,7 +35,7 @@ module.exports = {
     themes: [
       {
         bb: {
-          primary: '#255700',
+          primary: '#2046cf',
           secondary: '#c86251',
           accent: '#fda427',
           neutral: '#2b2928',

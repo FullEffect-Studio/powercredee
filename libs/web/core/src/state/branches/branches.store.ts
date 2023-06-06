@@ -3,14 +3,14 @@ import { BranchInListDto } from '@bb/shared/dtos';
 import { EntityState, EntityStore, StoreConfig } from '@datorama/akita';
 
 
-export type DriversState = EntityState<BranchInListDto>
+export type BranchState = EntityState<BranchInListDto>
 
 @Injectable({ providedIn: 'root' })
 @StoreConfig({
-  name: 'drivers',
+  name: 'branches',
   idKey: 'id'
 })
-export class DriversStore extends EntityStore<DriversState> {
+export class BranchesStore extends EntityStore<BranchState> {
 
   constructor() {
     super();

@@ -1,30 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {switchMap, tap } from 'rxjs/operators';
-import {DriversState, DriversStore} from './drivers.store';
+import {BranchState, BranchesStore} from './branches.store';
 import {AkitaFiltersPlugin} from "akita-filters-plugin";
-import {DriversQuery} from "./drivers.query";
+import {BranchesQuery} from "./branches.query";
 import {environment} from "@bb/admin/common";
 import {AddBranchDto, BranchInListDto, EditBranchDto } from '@bb/shared/dtos';
 import {EMPTY} from "rxjs";
 
 @Injectable({ providedIn: 'root' })
-export class DriversService {
+export class BranchesService {
 
   apiBase
   filter
-  constructor(private driversStore: DriversStore,
-              private query: DriversQuery,
+  constructor(private branchesStore: BranchesStore,
+              private query: BranchesQuery,
               private http: HttpClient) {
-    this.apiBase = `${environment.server.baseUrl}/api/drivers`;
-    this.filter = new AkitaFiltersPlugin<DriversState>(this.query);
+    this.apiBase = `${environment.server.baseUrl}/api/branches`;
+    this.filter = new AkitaFiltersPlugin<BranchState>(this.query);
   }
 
 
   get() {
     const request = this.http.get<BranchInListDto[]>(this.apiBase).pipe(
       tap((entities) => {
-        this.driversStore.set(entities);
+        this.branchesStore.set(entities);
       })
     );
     return this.query.selectHasCache().pipe(
@@ -48,7 +48,7 @@ export class DriversService {
   }
 
   clearCache() {
-    this.driversStore.setHasCache(false, { restartTTL: true });
+    this.branchesStore.setHasCache(false, { restartTTL: true });
   }
 
 }

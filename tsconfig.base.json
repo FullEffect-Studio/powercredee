@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@bb/admin/analytics": ["libs/admin/analytics/src/index.ts"],
+      "@bb/admin/branches": ["libs/admin/branches/src/index.ts"],
       "@bb/admin/buses": ["libs/admin/buses/src/index.ts"],
       "@bb/admin/common": ["libs/admin/common/src/index.ts"],
       "@bb/admin/core": ["libs/admin/core/src/index.ts"],

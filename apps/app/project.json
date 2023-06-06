@@ -21,9 +21,7 @@
           "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"
         ],
         "scripts": [],
-        "allowedCommonJsDependencies": [
-          "class-validator"
-        ]
+        "allowedCommonJsDependencies": ["class-validator"]
       },
       "configurations": {
         "production": {

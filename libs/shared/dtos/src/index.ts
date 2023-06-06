@@ -1,4 +1,4 @@
-export * from './drivers.dtos'
+export * from './branches.dtos'
 export * from './utils'
 export * from './users.dtos'
 export * from './stops.dto'

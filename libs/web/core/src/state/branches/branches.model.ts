@@ -3,7 +3,7 @@ import { BranchInListDto } from '@bb/shared/dtos';
 
 
 
-export function createDriver(params: Partial<BranchInListDto>) {
+export function createBranch(params: Partial<BranchInListDto>) {
   return {
 
   } as BranchInListDto;

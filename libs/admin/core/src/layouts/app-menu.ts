@@ -15,43 +15,52 @@ export const appMenu: AppMenu[]  = [
     subMenus:[]
   },
   {
+    feIcon: 'fe-grid',
+    isOpen: false,
+    path: '/branches',
+    label: 'Branches',
+    subMenus: [
+
+    ]
+  },
+
+  {
     feIcon: 'fe-users',
     isOpen: false,
-    path: '/routing/students',
-    label: 'Students',
+    path: '/customers',
+    label: 'Customers',
+    subMenus: [
+      {
+        feIcon: 'fe-list',
+        path: '',
+        label: 'Directory',
+        isOpen: false,
+        subMenus: []
+      },
+      {
+        feIcon: 'fe-user-plus',
+        path: '',
+        label: 'Register Customer',
+        isOpen: false,
+        subMenus: []
+      }
+    ]
+  },
+
+  {
+    feIcon: 'fe-briefcase',
+    isOpen: false,
+    path: '/loans',
+    label: 'Loans',
     subMenus: [
     ]
   },
 
   {
-    feIcon: 'fe-map-pin',
-    isOpen: false,
-    path: '/routing/stops',
-    label: 'Stops',
-    subMenus: [
-    ]
-  },
-  {
-    feIcon: 'fa fa-bus fe-truck',
-    isOpen: false,
-    path: '/buses',
-    label: 'Buses',
-    subMenus: [
-    ]
-  },
-  {
-    feIcon: 'fe-cpu',
-    isOpen: false,
-    path: '/devices',
-    label: 'Devices',
-    subMenus: [
-    ]
-  },
-  {
     feIcon: 'fe-user-check',
     isOpen: false,
-    path: '/drivers',
-    label: 'Drivers',
+    path: '/accounts',
+    label: 'Accounts',
     subMenus: [
     ]
   },

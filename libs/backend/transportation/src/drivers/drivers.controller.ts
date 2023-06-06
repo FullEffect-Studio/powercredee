@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import { DriversRepository } from './drivers.repository';
-import { AddDriverDto, EditDriverDto } from '@bb/shared/dtos';
+import { AddBranchDto, EditBranchDto } from '@bb/shared/dtos';
 import { Driver } from '@prisma/client';
 import { v4 } from 'uuid';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
@@ -24,22 +24,22 @@ export class DriversController {
     });
   }
 
-  @ApiBody({ type: AddDriverDto, description: 'Add Driver', required: true, })
+  @ApiBody({ type: AddBranchDto, description: 'Add Driver', required: true, })
   @Post()
-  addDriver(@Body() payload: AddDriverDto) {
+  addDriver(@Body() payload: AddBranchDto) {
     console.log('payload',payload)
     const {
       name,
       idCardNumber,
       licenseNumber,
-      phoneNumber,
+      phone_number,
       licenseType,
       address,
     } = payload;
     return this.driversRepository.createDriver({
       name,
       address,
-      phoneNumber,
+      phone_number: phoneNumber,
       schoolId: v4(),
       idCardNumber,
       licenseNumber,
@@ -48,9 +48,9 @@ export class DriversController {
   }
 
   @Patch(":id")
-  async updateInfo(@Body() payload: EditDriverDto) {
+  async updateInfo(@Body() payload: EditBranchDto) {
     const {
-      name, address,phoneNumber,id
+      name, address,phone_number,id
     } = payload;
 
     return this.driversRepository.updateDriver({
@@ -59,7 +59,7 @@ export class DriversController {
       },
       data: {
         name,
-        phoneNumber,
+        phone_number: phoneNumber,
         address,
       }
     })

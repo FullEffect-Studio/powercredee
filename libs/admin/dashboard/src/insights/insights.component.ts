@@ -12,14 +12,9 @@ import { BehaviorSubject } from "rxjs";
 import { NzTagModule } from "ng-zorro-antd/tag";
 import { environment } from "@bb/admin/common";
 import { v4 } from "uuid";
-import {BusStatusComponent} from "../components/bus-status/bus-status.component";
-import {DriverStatusComponent} from "../components/driver-status/driver-status.component";
-import {StudentsStatusComponent} from "../components/students-status/students-status.component";
-import {AlertsWidgetComponent} from "../components/alerts-widget/alerts-widget.component";
-import {DepositWithdrawalAnalyticsComponent} from "../components/on-time-performace/deposit-withdrawal-analytics.component";
-import {FuelConsumptionComponent} from "../components/fuel-consumption/fuel-consumption.component";
-import {ExpensesOverviewComponent} from "../components/bus-maintenance-cost/expenses-overview.component";
-import {StudentsStatusByBusComponent} from "../components/students-status-by-bus/students-status-by-bus.component";
+import {DepositWithdrawalAnalyticsComponent} from "../components/deposit-withdrawal-analytics/deposit-withdrawal-analytics.component";
+import {ExpensesOverviewComponent} from "../components/expenses-oveview/expenses-overview.component";
+import {RecentTransactionsComponent} from "../components/recent-transactions/recent-transactions.component";
 
 
 
@@ -35,14 +30,9 @@ import {StudentsStatusByBusComponent} from "../components/students-status-by-bus
     NzCardModule,
     NzButtonModule,
     NzTagModule,
-    BusStatusComponent,
-    DriverStatusComponent,
-    StudentsStatusComponent,
-    AlertsWidgetComponent,
     DepositWithdrawalAnalyticsComponent,
-    FuelConsumptionComponent,
     ExpensesOverviewComponent,
-    StudentsStatusByBusComponent,
+    RecentTransactionsComponent,
   ],
   templateUrl: './insights.component.html',
   styleUrls: ['./insights.component.scss'],

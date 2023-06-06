@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import {adminBranchesRoutes} from "@bb/admin/branches";
 
 export const appRoutes: Route[] = [
   {
@@ -8,13 +9,7 @@ export const appRoutes: Route[] = [
   },
 
   {
-    path: 'drivers',
-    loadChildren: () => import('@bb/admin/drivers').then(m => m.AdminDriversModule)
+    path: 'branches',
+    children: adminBranchesRoutes
   },
-  {
-    path: 'devices',
-    loadChildren: () => import('@bb/admin/devices').then(m => m.DevicesModule)
-  },
-
-
 ];
