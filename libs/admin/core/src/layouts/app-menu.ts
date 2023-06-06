@@ -27,12 +27,12 @@ export const appMenu: AppMenu[]  = [
   {
     feIcon: 'fe-users',
     isOpen: false,
-    path: '/customers',
+    path: '',
     label: 'Customers',
     subMenus: [
       {
         feIcon: 'fe-list',
-        path: '',
+        path: '/customers',
         label: 'Directory',
         isOpen: false,
         subMenus: []

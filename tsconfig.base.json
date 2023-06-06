@@ -20,6 +20,7 @@
       "@bb/admin/buses": ["libs/admin/buses/src/index.ts"],
       "@bb/admin/common": ["libs/admin/common/src/index.ts"],
       "@bb/admin/core": ["libs/admin/core/src/index.ts"],
+      "@bb/admin/customers": ["libs/admin/customers/src/index.ts"],
       "@bb/admin/dashboard": ["libs/admin/dashboard/src/index.ts"],
       "@bb/admin/devices": ["libs/admin/devices/src/index.ts"],
       "@bb/admin/drivers": ["libs/admin/drivers/src/index.ts"],
@@ -42,6 +43,7 @@
       "@bb/backend/transportation": [
         "libs/backend/transportation/src/index.ts"
       ],
+      "@bb/customers": ["libs/customers/src/index.ts"],
       "@bb/shared/dtos": ["libs/shared/dtos/src/index.ts"],
       "@bb/web/core": ["libs/web/core/src/index.ts"]
     }

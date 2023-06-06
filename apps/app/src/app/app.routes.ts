@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import {adminBranchesRoutes} from "@bb/admin/branches";
+import {adminCustomersRoutes} from "@bb/admin/customers";
 
 export const appRoutes: Route[] = [
   {
@@ -12,4 +13,8 @@ export const appRoutes: Route[] = [
     path: 'branches',
     children: adminBranchesRoutes
   },
+  {
+    path: 'customers',
+    children: adminCustomersRoutes
+  }
 ];
