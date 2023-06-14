@@ -1,4 +1,5 @@
 export * from './web-core.module'
+export * from './state/customers/customer.model'
 export * from './state/customers/customers.service'
 export * from './state/customers/customers.query'
 export * from './services/fe-messages/fe-messages.service'

@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {EditBranchComponent} from "../../../branches/src/lib/edit-branch.component";
-import {BranchesQuery, BranchesService, FeMessagesComponent, FeMessagesService} from "@bb/web/core";
+import {
+  BranchesQuery,
+  BranchesService,
+  CustomersQuery,
+  CustomersService,
+  FeMessagesComponent,
+  FeMessagesService
+} from "@bb/web/core";
 import {NzDividerModule} from "ng-zorro-antd/divider";
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzGridModule} from "ng-zorro-antd/grid";
@@ -14,13 +20,16 @@ import {BehaviorSubject, map} from "rxjs";
 import {HashMap} from "@datorama/akita";
 import {AddBranchDto, BranchInListDto} from "@bb/shared/dtos";
 import {NzNotificationService} from "ng-zorro-antd/notification";
+import {EmptyComponent} from "@bb/web/shared";
+import {Customer} from "@bb/web/core";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'pc-customers',
   standalone: true,
-  imports: [CommonModule, EditBranchComponent, FeMessagesComponent, NzDividerModule, NzFormModule, NzGridModule, NzInputModule, NzModalModule, NzPageHeaderModule, NzTableModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, FeMessagesComponent, NzDividerModule, NzFormModule, NzGridModule, NzInputModule, NzModalModule, NzPageHeaderModule, NzTableModule, ReactiveFormsModule, FormsModule, EmptyComponent, RouterLink],
   template: `
-    <div *ngIf="customers$ | async as drivers" class="pt-4 pl-4  rounded-lg shadow-lg">
+    <div *ngIf="customers$ | async as drivers" class="pt-4 pl-4  rounded-lg ">
       <div class="container mx-auto bg-white ">
         <nz-page-header [nzTitle]="titleTpl" class="site-page-header">
           <ng-template #titleTpl>
@@ -28,56 +37,45 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
 
           <nz-page-header-extra>
             <div class="flex items-center space-x-2">
-              <input *ngIf="false" (keyup)="onSearchTermChange($event)" [(ngModel)]="searchTerm"
+              <input (keyup)="onSearchTermChange($event)" [(ngModel)]="searchTerm"
                      class="input input-md input-bordered placeholder-neutral/25"
                      placeholder="Search by name" type="search">
-              <button (click)="showAddModal=true" class="btn btn-md btn-primary"><span class="fe fe-plus"></span> New
-                Branch
+              <button routerLink="/customers/register" class="btn btn-md btn-primary"><span class="fe fe-plus"></span> New
+                Customer
+              </button>
+              <button (click)="showAddModal=true" class="btn btn-md btn-secondary">
+                <span class="fe fe-download mr-1"></span> Bulk Import
               </button>
             </div>
           </nz-page-header-extra>
         </nz-page-header>
-        <section
-          *ngIf="!drivers.length"
-          class="max-w-lg px-4 py-12 lg:py-20 mx-auto"
-        >
-          <img class="mx-auto sm:w-2/5" src="assets/branches.png" alt="Branches image"/>
-
-          <h2 *ngIf="searchTerm else emptyListTitle" class="mt-8 text-xl font-medium text-center text-gray-800">
-            No match found
-          </h2>
-          <ng-template #emptyListTitle>
-            <h2 class="mt-8 text-xl font-medium text-center text-gray-800">
-              No Branches have been setup yet
-            </h2>
-          </ng-template>
-
-          <p *ngIf="searchTerm else emptyListDescription" class="mt-4 text-center text-gray-600">
-            No driver name contains <span class="font-bold">"{{searchTerm}}"</span>
-          </p>
-          <ng-template #emptyListDescription>
-            <p class="mt-4 text-center text-gray-600">
-              <span>Setup and manage your company branches here</span>
-            </p>
-          </ng-template>
-        </section>
+        <bb-empty [show]="!drivers.length"
+                  imageUrl="assets/customers.png"
+                  collectionName="Customer"
+                  title="No Customer has been registred yet"
+                  description="Setup and manage your company branches here"
+                  [searchTerm]="searchTerm"></bb-empty>
 
         <section *ngIf="drivers.length" class="px-8 mx-auto">
-          <nz-table [nzData]="drivers" [nzLoading]="loading$ | async">
+          <nz-table [nzData]="drivers" nzBordered [nzLoading]="loading$ | async">
             <thead>
             <tr>
+              <th>Photo</th>
+              <th>Customer No.</th>
               <th>Name</th>
-              <th>Phone Number</th>
-              <th>Address</th>
+              <th>Email</th>
+              <th>Branch</th>
               <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <ng-container *ngFor="let data of drivers">
               <tr class="cursor-pointerx hover:bg-gray-300x">
-                <td>{{ data.name }}</td>
-                <td>{{ data.phone_number }}</td>
-                <td>{{ data.address }}</td>
+                <td><img [width]="36" [height]="36"  src="assets/customer_avatar.png" alt="Customer Photo"></td>
+                <td>{{ data.member_no }}</td>
+                <td>{{ data.first_name }} {{data.last_name}}</td>
+                <td>{{ data.email }}</td>
+                <td>{{data.branch_id}}</td>
                 <td>
                   <a (click)="showEditModal = true; selectedBranch$$.next(data)"><span class="fe fe-edit"></span>
                     Edit</a>
@@ -91,39 +89,6 @@ import {NzNotificationService} from "ng-zorro-antd/notification";
         </section>
       </div>
 
-      <nz-modal
-        (nzOnCancel)="showAddModal = false"
-        (nzOnOk)="addDriver()"
-        [nzClosable]="true"
-        [nzOkDisabled]="form.invalid"
-        [nzVisible]="showAddModal"
-        nzOkText="Add Driver"
-      >
-        <div *nzModalTitle><span class="fe fe-plus"></span> Add New Company Branch</div>
-        <div *nzModalContent>
-          <bb-messages></bb-messages>
-          <form [formGroup]="form" nz-form nzLayout="vertical">
-            <nz-form-item class="col-span-2">
-              <nz-form-label nzRequired>Branch Name</nz-form-label>
-              <nz-form-control>
-                <input formControlName="name" nz-input type="text"/>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item class="col-span-2">
-              <nz-form-label nzRequired>Phone Number</nz-form-label>
-              <nz-form-control>
-                <input formControlName="phoneNumber" nz-input type="text"/>
-              </nz-form-control>
-            </nz-form-item>
-            <nz-form-item class="col-span-2">
-              <nz-form-label>Address</nz-form-label>
-              <nz-form-control>
-                <input formControlName="address" nz-input type="text"/>
-              </nz-form-control>
-            </nz-form-item>
-          </form>
-        </div>
-      </nz-modal>
 
 
 <!--      <bb-edit-branch [show]="showEditModal" (hide)="showEditModal = false"-->
@@ -141,26 +106,26 @@ export class CustomersComponent {
   });
   showAddModal = false;
 
-  customers$ = this.branchesService.filter.selectAllByFilters().pipe(
-    map(data => <HashMap<BranchInListDto>>data),
-    map((drivers) => {
-      const source = <any>drivers
-      const data: BranchInListDto[] = [];
+  customers$ = this.customersService.filter.selectAllByFilters().pipe(
+    map(data => <HashMap<Customer>>data),
+    map((customers) => {
+      const source = <any>customers
+      const data: Customer[] = [];
       for (const driversKey in source) {
-        data.push(drivers[driversKey]);
+        data.push(customers[driversKey]);
       }
       return data;
     })
   );
-  loading$ = this.busesQuery.selectLoading();
+  loading$ = this.customersQuery.selectLoading();
   showEditModal = false;
   selectedBranch$$ = new BehaviorSubject<BranchInListDto|null>(null);
   searchTerm = null;
 
   constructor(
     private formBuilder: FormBuilder,
-    private branchesService: BranchesService,
-    private busesQuery: BranchesQuery,
+    private customersService: CustomersService,
+    private customersQuery: CustomersQuery,
     private modalService: NzModalService,
     private notification: NzNotificationService,
     private feMessageService: FeMessagesService
@@ -168,7 +133,7 @@ export class CustomersComponent {
   }
 
   ngOnInit(): void {
-    this.branchesService.get().subscribe();
+    this.customersService.get().subscribe();
   }
 
   addDriver() {
@@ -180,10 +145,10 @@ export class CustomersComponent {
       phone_number: <string>this.form.get("phoneNumber")?.value,
     };
 
-    this.branchesService.add(payload).subscribe(
+    this.customersService.add(payload).subscribe(
       () => {
-        this.branchesService.clearCache();
-        this.branchesService.get().subscribe();
+        this.customersService.clearCache();
+        this.customersService.get().subscribe();
         this.showAddModal = false;
         this.notification.success(
           "Added successfully",
@@ -203,10 +168,10 @@ export class CustomersComponent {
       nzOkType: "primary",
       nzOkDanger: true,
       nzOnOk: () =>
-        this.branchesService.delete(data.id).subscribe(
+        this.customersService.delete(data.id).subscribe(
           () => {
-            this.branchesService.clearCache();
-            this.branchesService.get().subscribe();
+            this.customersService.clearCache();
+            this.customersService.get().subscribe();
             this.notification.success("Branch has been deleted permanently", "");
           },
           (err) => {
@@ -223,10 +188,10 @@ export class CustomersComponent {
 
   onSearchTermChange($event: any) {
     const searchTerm = $event.target.value;
-    this.branchesService.filter.setFilter({
+    this.customersService.filter.setFilter({
       id: "name",
       value: searchTerm,
-      predicate: (val, index, array) => val.name.toLowerCase().includes(searchTerm?.toLowerCase())
+      predicate: (val) => `${val.first_name}${val.last_name}`.toLowerCase().includes(searchTerm?.toLowerCase())
     });
   }
 }

@@ -39,7 +39,7 @@ export const appMenu: AppMenu[]  = [
       },
       {
         feIcon: 'fe-user-plus',
-        path: '',
+        path: '/register/customers',
         label: 'Register Customer',
         isOpen: false,
         subMenus: []

@@ -45,7 +45,8 @@
       ],
       "@bb/customers": ["libs/customers/src/index.ts"],
       "@bb/shared/dtos": ["libs/shared/dtos/src/index.ts"],
-      "@bb/web/core": ["libs/web/core/src/index.ts"]
+      "@bb/web/core": ["libs/web/core/src/index.ts"],
+      "@bb/web/shared": ["libs/web/shared/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

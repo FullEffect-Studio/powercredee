@@ -1,5 +1,3 @@
-import { ID } from '@datorama/akita';
-import { BranchInListDto } from '@bb/shared/dtos';
 import { Gender } from '../../enums';
 
 export class Customer{
@@ -17,11 +15,15 @@ export class Customer{
   address: string
   credit_source: string
   photo_url: string
-  // password: string
+  national_id: string
+
+  get name(){
+    return `${this.first_name} ${this.last_name}`
+  }
 }
 
 export class AddCustomerDto{
-  
+
 }
 
 
